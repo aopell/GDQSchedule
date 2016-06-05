@@ -26,7 +26,7 @@ namespace GDQSchedule
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.TimeOffset = (int)numericUpDown1.Value;
+            Properties.Settings.Default.TimeOffset = (long)numericUpDown1.Value;
             Properties.Settings.Default.EventName = textBox1.Text;
             Properties.Settings.Default.Save();
             Info.CurrentEventName = textBox1.Text;

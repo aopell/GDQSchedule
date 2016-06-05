@@ -12,17 +12,17 @@ namespace GDQSchedule
         public DateTime StartTime;
         public TimeSpan EstimatedLength;
         public string Participants;
-        public string Console;
         public string Comment;
+        public string Category;
 
-        public Game(string name, DateTime startTime, TimeSpan estLength, string participants, string console, string comment)
+        public Game(string name, DateTime startTime, TimeSpan estLength, string participants, string comment, string category)
         {
             Name = name;
             StartTime = startTime;
             EstimatedLength = estLength;
             Participants = participants;
-            Console = console;
             Comment = comment;
+            Category = category;
         }
     }
 }

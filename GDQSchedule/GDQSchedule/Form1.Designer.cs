@@ -44,19 +44,18 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // timeLabel
             // 
             this.timeLabel.BackColor = System.Drawing.Color.Black;
             this.timeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timeLabel.ForeColor = System.Drawing.Color.White;
+            this.timeLabel.ForeColor = System.Drawing.Color.Red;
             this.timeLabel.Location = new System.Drawing.Point(12, 88);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(328, 42);
             this.timeLabel.TabIndex = 2;
-            this.timeLabel.Text = "[Loading...]";
+            this.timeLabel.Text = "[Loading...]\r\n[Loading...]";
             // 
             // label2
             // 
@@ -70,6 +69,7 @@
             this.label2.Text = "[Loading...]";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.label2.DoubleClick += new System.EventHandler(this.label2_DoubleClick);
             // 
             // label3
             // 
@@ -82,17 +82,19 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Runner(s): [Loading...]\r\nRunning for approx. [Loading...] / Est. [Loading...]";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label3.DoubleClick += new System.EventHandler(this.label2_DoubleClick);
             // 
             // currentGameLabel
             // 
             this.currentGameLabel.BackColor = System.Drawing.Color.Black;
             this.currentGameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentGameLabel.ForeColor = System.Drawing.Color.White;
-            this.currentGameLabel.Location = new System.Drawing.Point(12, 145);
+            this.currentGameLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.currentGameLabel.Location = new System.Drawing.Point(12, 135);
             this.currentGameLabel.Name = "currentGameLabel";
-            this.currentGameLabel.Size = new System.Drawing.Size(328, 42);
+            this.currentGameLabel.Size = new System.Drawing.Size(328, 66);
             this.currentGameLabel.TabIndex = 6;
-            this.currentGameLabel.Text = "[Loading...]";
+            this.currentGameLabel.Text = "[Loading...]\r\n[Loading...]\r\n[Loading...]";
+            this.currentGameLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseDoubleClick);
             this.currentGameLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.currentGameLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseUp);
             // 
@@ -100,12 +102,13 @@
             // 
             this.nextGameLabel.BackColor = System.Drawing.Color.Black;
             this.nextGameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nextGameLabel.ForeColor = System.Drawing.Color.White;
-            this.nextGameLabel.Location = new System.Drawing.Point(12, 202);
+            this.nextGameLabel.ForeColor = System.Drawing.Color.Lime;
+            this.nextGameLabel.Location = new System.Drawing.Point(12, 206);
             this.nextGameLabel.Name = "nextGameLabel";
-            this.nextGameLabel.Size = new System.Drawing.Size(328, 62);
+            this.nextGameLabel.Size = new System.Drawing.Size(328, 64);
             this.nextGameLabel.TabIndex = 7;
-            this.nextGameLabel.Text = "[Loading...]";
+            this.nextGameLabel.Text = "[Loading...]\r\n[Loading...]\r\n[Loading...]\r\n[Loading...]";
+            this.nextGameLabel.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.nextGameLabel_MouseDoubleClick);
             this.nextGameLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.nextGameLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseUp);
             // 
@@ -113,12 +116,13 @@
             // 
             this.followingGameLabel.BackColor = System.Drawing.Color.Black;
             this.followingGameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.followingGameLabel.ForeColor = System.Drawing.Color.White;
-            this.followingGameLabel.Location = new System.Drawing.Point(11, 279);
+            this.followingGameLabel.ForeColor = System.Drawing.Color.Aqua;
+            this.followingGameLabel.Location = new System.Drawing.Point(11, 276);
             this.followingGameLabel.Name = "followingGameLabel";
-            this.followingGameLabel.Size = new System.Drawing.Size(328, 62);
+            this.followingGameLabel.Size = new System.Drawing.Size(328, 64);
             this.followingGameLabel.TabIndex = 8;
-            this.followingGameLabel.Text = "[Loading...]";
+            this.followingGameLabel.Text = "[Loading...]\r\n[Loading...]\r\n[Loading...]\r\n[Loading...]";
+            this.followingGameLabel.DoubleClick += new System.EventHandler(this.followingGameLabel_DoubleClick);
             this.followingGameLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.followingGameLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseUp);
             // 
@@ -126,12 +130,13 @@
             // 
             this.afterThatLabel.BackColor = System.Drawing.Color.Black;
             this.afterThatLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.afterThatLabel.ForeColor = System.Drawing.Color.White;
-            this.afterThatLabel.Location = new System.Drawing.Point(12, 356);
+            this.afterThatLabel.ForeColor = System.Drawing.Color.Fuchsia;
+            this.afterThatLabel.Location = new System.Drawing.Point(11, 346);
             this.afterThatLabel.Name = "afterThatLabel";
-            this.afterThatLabel.Size = new System.Drawing.Size(328, 62);
+            this.afterThatLabel.Size = new System.Drawing.Size(328, 64);
             this.afterThatLabel.TabIndex = 9;
-            this.afterThatLabel.Text = "[Loading...]";
+            this.afterThatLabel.Text = "[Loading...]\r\n[Loading...]\r\n[Loading...]\r\n[Loading...]";
+            this.afterThatLabel.DoubleClick += new System.EventHandler(this.afterThatLabel_DoubleClick);
             this.afterThatLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.afterThatLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseUp);
             // 
@@ -145,7 +150,7 @@
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(332, 349);
+            this.richTextBox1.Size = new System.Drawing.Size(332, 322);
             this.richTextBox1.TabIndex = 10;
             this.richTextBox1.Text = "";
             // 
@@ -154,7 +159,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(690, 449);
+            this.ClientSize = new System.Drawing.Size(690, 423);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.afterThatLabel);
             this.Controls.Add(this.followingGameLabel);

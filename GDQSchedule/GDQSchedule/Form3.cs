@@ -20,7 +20,7 @@ namespace GDQSchedule
         private void Form3_Load(object sender, EventArgs e)
         {
             this.CenterToScreen();
-            richTextBox1.Text = "";
+            listBox1.Items.Clear();
             string prev = "";
             bool first = true;
             foreach (Game g in Info.AllGames)
@@ -29,10 +29,13 @@ namespace GDQSchedule
                 {
                     if (first)
                     {
-                        richTextBox1.Text += prev;
+                        if (prev != "")
+                        {
+                            listBox1.Items.Add(prev);
+                        }
                         first = false;
                     }
-                    richTextBox1.Text += g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n";
+                    listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
                 }
                 else
                 {
@@ -50,7 +53,7 @@ namespace GDQSchedule
                 if (showall)
                 {
                     showall = false;
-                    richTextBox1.Text = "";
+                    listBox1.Items.Clear();
                     string prev = "";
                     bool first = true;
                     this.Text = "Schedule: Current and Future Events";
@@ -60,10 +63,13 @@ namespace GDQSchedule
                         {
                             if (first)
                             {
-                                richTextBox1.Text += prev;
+                                if (prev != "")
+                                {
+                                    listBox1.Items.Add(prev);
+                                }
                                 first = false;
                             }
-                            richTextBox1.Text += g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n";
+                            listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
                         }
                         else
                         {
@@ -74,14 +80,25 @@ namespace GDQSchedule
                 else
                 {
                     showall = true;
-                    richTextBox1.Text = "";
+                    listBox1.Items.Clear();
                     this.Text = "Schedule: All Events";
                     foreach (Game g in Info.AllGames)
                     {
-                        richTextBox1.Text += g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n";
+                        listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
                     }
                 }
             }
+        }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Form4 f = new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('\t')[1].Split('[')[0].Trim()));
+            f.ShowDialog();
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            //Form4 f = new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('\t')[1].Split('[')[0].Trim()));
         }
     }
 }
