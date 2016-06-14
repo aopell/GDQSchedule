@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
-using ExtMethods;
 using System.Runtime.InteropServices;
 using System.Drawing;
 
@@ -20,11 +19,6 @@ namespace GDQSchedule
         public void w(string text)
         {
             timeLabel.Text += text + "\r\n";
-        }
-
-        public void w2(string text)
-        {
-            richTextBox1.Text += text + "\r\n";
         }
 
         Game currentGame;
@@ -65,6 +59,30 @@ namespace GDQSchedule
 
             Info.LoadSchedule();
             LoadGameInfoStuff();
+
+            listBox1.Items.Clear();
+            listBox1.SelectedItems.Clear();
+
+            foreach (string s in File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Info.txt"))
+            {
+                string game;
+                string category = null;
+                try
+                {
+                    game = s.Split('\t')[0];
+                    category = s.Split('\t')[1];
+                }
+                catch
+                {
+                    game = s;
+                }
+                Game g = Info.FindGameByName(game, category);
+                if (g != null)
+                {
+                    listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                }
+            }
+
             timer1.Start();
         }
 
@@ -75,10 +93,6 @@ namespace GDQSchedule
 
             CenterToScreen();
 
-            foreach (string s in File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Info.txt"))
-            {
-                w2(s);
-            }
             ResetAll();
             toolTip1.Active = false;
         }
@@ -168,7 +182,7 @@ namespace GDQSchedule
             }
             else if (e.Button == MouseButtons.Middle)
             {
-                Process.Start("http://twitch.tv/gamesdonequick");
+                Process.Start(Properties.Settings.Default.Link);
             }
             else if (e.Button == MouseButtons.Left)
             {
@@ -222,11 +236,21 @@ namespace GDQSchedule
         {
             (new Form4(currentGame)).ShowDialog();
         }
-    }
-}
 
-namespace ExtMethods
-{
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedItem != null)
+            {
+                (new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('—')[1].Split('{')[0].Trim(), listBox1.SelectedItem.ToString().Split('{')[1].Split('}')[0].Trim()))).ShowDialog();
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+
     public static class ExtMethods
     {
         public static string Truncate(this string value, int maxChars)

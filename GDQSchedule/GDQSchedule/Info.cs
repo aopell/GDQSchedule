@@ -40,17 +40,24 @@ namespace GDQSchedule
             foreach (string s in Schedule)
             {
                 string[] g = s.Split('\t');
-                Times.Add(Convert.ToDateTime(g[0]).AddMinutes(ManualTimeOffset));
-                Games.Add(g[1]);
-                People.Add(g[2]);
-                EstTime.Add(g[3]);
-                Categories.Add(g[4]);
-                Comments.Add(g[5]);
+                Times.Add(Convert.ToDateTime(g[0].Trim()).AddMinutes(ManualTimeOffset));
+                Games.Add(g[1].Trim());
+                People.Add(g[2].Trim());
+                EstTime.Add(g[3].Trim());
+                try { Categories.Add(g[4].Trim()); } catch { Categories.Add(""); }
+                try { Comments.Add(g[5].Trim()); } catch { Comments.Add(""); }
             }
 
             for (int i = 0; i < Games.Count; i++)
             {
-                AllGames.Add(new Game(Games[i], Times[i], TimeSpan.Parse(EstTime[i]), People[i], Comments[i], Categories[i]));
+                try
+                {
+                    AllGames.Add(new Game(Games[i], Times[i], TimeSpan.Parse(EstTime[i]), People[i], Comments[i], Categories[i]));
+                }
+                catch (Exception e)
+                {
+                    System.Windows.Forms.MessageBox.Show(e.ToString(), e.GetType().ToString());
+                }
             }
 
             AllGames.OrderBy(game => game.StartTime);
@@ -81,13 +88,23 @@ namespace GDQSchedule
             }
         }
 
-        public static Game FindGameByName(string Name)
+        public static Game FindGameByName(string Name, string Category)
         {
             foreach (Game g in AllGames)
             {
-                if (g.Name == Name)
+                if (Category != null)
                 {
-                    return g;
+                    if (g.Name == Name && g.Category == Category)
+                    {
+                        return g;
+                    }
+                }
+                else
+                {
+                    if (g.Name == Name)
+                    {
+                        return g;
+                    }
                 }
             }
 

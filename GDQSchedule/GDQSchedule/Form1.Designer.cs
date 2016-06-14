@@ -39,7 +39,7 @@
             this.nextGameLabel = new System.Windows.Forms.Label();
             this.followingGameLabel = new System.Windows.Forms.Label();
             this.afterThatLabel = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // timer1
@@ -140,19 +140,18 @@
             this.afterThatLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.afterThatLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.currentGameLabel_MouseUp);
             // 
-            // richTextBox1
+            // listBox1
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.Black;
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(346, 88);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(332, 322);
-            this.richTextBox1.TabIndex = 10;
-            this.richTextBox1.Text = "";
+            this.listBox1.BackColor = System.Drawing.Color.Black;
+            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1.ForeColor = System.Drawing.Color.White;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(346, 88);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(332, 325);
+            this.listBox1.TabIndex = 10;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
             // Form1
             // 
@@ -160,7 +159,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(690, 423);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.afterThatLabel);
             this.Controls.Add(this.followingGameLabel);
             this.Controls.Add(this.nextGameLabel);
@@ -193,7 +192,7 @@
         private System.Windows.Forms.Label nextGameLabel;
         private System.Windows.Forms.Label followingGameLabel;
         private System.Windows.Forms.Label afterThatLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

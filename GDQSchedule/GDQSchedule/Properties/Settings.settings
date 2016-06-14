@@ -8,5 +8,8 @@
     <Setting Name="EventName" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;Enter Event Name&gt;</Value>
     </Setting>
+    <Setting Name="Link" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;Enter Web Link&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

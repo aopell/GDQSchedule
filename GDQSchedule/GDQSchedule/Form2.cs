@@ -22,11 +22,13 @@ namespace GDQSchedule
             this.CenterToScreen();
             numericUpDown1.Value = Info.ManualTimeOffset;
             textBox1.Text = Properties.Settings.Default.EventName;
+            textBox2.Text = Properties.Settings.Default.Link;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.TimeOffset = (long)numericUpDown1.Value;
+            Properties.Settings.Default.Link = textBox2.Text;
             Properties.Settings.Default.EventName = textBox1.Text;
             Properties.Settings.Default.Save();
             Info.CurrentEventName = textBox1.Text;

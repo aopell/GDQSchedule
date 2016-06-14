@@ -46,5 +46,17 @@ namespace GDQSchedule.Properties {
                 this["EventName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<Enter Web Link>")]
+        public string Link {
+            get {
+                return ((string)(this["Link"]));
+            }
+            set {
+                this["Link"] = value;
+            }
+        }
     }
 }

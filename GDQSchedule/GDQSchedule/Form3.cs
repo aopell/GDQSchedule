@@ -35,11 +35,11 @@ namespace GDQSchedule
                         }
                         first = false;
                     }
-                    listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
+                    listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " {" + g.Category + "} [" + g.EstimatedLength + "]\r\n");
                 }
                 else
                 {
-                    prev = g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n";
+                    prev = g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " {" + g.Category + "} [" + g.EstimatedLength + "]\r\n";
                 }
             }
         }
@@ -69,11 +69,11 @@ namespace GDQSchedule
                                 }
                                 first = false;
                             }
-                            listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
+                            listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " {" + g.Category + "} [" + g.EstimatedLength + "]\r\n");
                         }
                         else
                         {
-                            prev = g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n";
+                            prev = g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " {" + g.Category + "} [" + g.EstimatedLength + "]\r\n";
                         }
                     }
                 }
@@ -84,7 +84,7 @@ namespace GDQSchedule
                     this.Text = "Schedule: All Events";
                     foreach (Game g in Info.AllGames)
                     {
-                        listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " [" + g.EstimatedLength + "]\r\n");
+                        listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + "\t" + g.Name + " {" + g.Category + "} [" + g.EstimatedLength + "]\r\n");
                     }
                 }
             }
@@ -92,7 +92,7 @@ namespace GDQSchedule
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Form4 f = new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('\t')[1].Split('[')[0].Trim()));
+            Form4 f = new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('\t')[1].Split('{')[0].Trim(), listBox1.SelectedItem.ToString().Split('{')[1].Split('}')[0].Trim()));
             f.ShowDialog();
         }
 
