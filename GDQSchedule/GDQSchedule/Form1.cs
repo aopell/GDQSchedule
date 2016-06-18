@@ -178,7 +178,7 @@ namespace GDQSchedule
                 {
                     temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
                 }
-                else
+                else if (g == null)
                 {
                     temp.Add(s);
                 }
