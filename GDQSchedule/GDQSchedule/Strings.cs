@@ -8,6 +8,9 @@ namespace GDQSchedule
 {
     public static class Strings
     {
+        public static string SchedulePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Schedule.txt";
+        public static string InfoPanelPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Info.txt";
+
         public static string Event = "Event";
         public static string ScheduleItem = "Game";
         public static string BaseStatus = "Currently Operating ";

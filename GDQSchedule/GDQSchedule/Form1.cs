@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Linq;
 
 namespace GDQSchedule
 {
@@ -26,6 +27,8 @@ namespace GDQSchedule
         Game thirdGame;
         Game fourthGame;
         int gameNumber;
+        List<string> info = new List<string>();
+        bool showAllInfo = false;
 
         public void LoadGameInfoStuff()
         {
@@ -60,29 +63,6 @@ namespace GDQSchedule
             Info.LoadSchedule();
             LoadGameInfoStuff();
 
-            listBox1.Items.Clear();
-            listBox1.SelectedItems.Clear();
-
-            foreach (string s in File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Info.txt"))
-            {
-                string game;
-                string category = null;
-                try
-                {
-                    game = s.Split('\t')[0];
-                    category = s.Split('\t')[1];
-                }
-                catch
-                {
-                    game = s;
-                }
-                Game g = Info.FindGameByName(game, category);
-                if (g != null)
-                {
-                    listBox1.Items.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
-                }
-            }
-
             timer1.Start();
         }
 
@@ -95,6 +75,8 @@ namespace GDQSchedule
 
             ResetAll();
             toolTip1.Active = false;
+
+            UpdateInfoPanel();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -151,6 +133,9 @@ namespace GDQSchedule
                             Text = currentGame.Name + " @ " + Info.CurrentEventName;
                             label2.Text = (currentGame.Name + " | " + currentGame.Category).Truncate(48);
                         }
+
+                        UpdateInfoPanel();
+
                         return;
                     }
                     catch
@@ -164,6 +149,43 @@ namespace GDQSchedule
             {
                 timeLabel.Text = Strings.Loading;
                 LoadGameInfoStuff();
+            }
+        }
+
+        private void UpdateInfoPanel()
+        {
+            List<string> temp = new List<string>();
+
+            foreach (string s in File.ReadAllLines(Strings.InfoPanelPath))
+            {
+                string game;
+                string category = null;
+                try
+                {
+                    game = s.Split('\t')[0];
+                    category = s.Split('\t')[1];
+                }
+                catch
+                {
+                    game = s;
+                }
+                Game g = Info.FindGameByName(game, category);
+                if (!showAllInfo && g != null && (g == Info.AllGames[Info.FindGameIDByTime(DateTime.Now)] || g.StartTime >= DateTime.Now))
+                {
+                    temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                }
+                else if (showAllInfo && g != null)
+                {
+                    temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                }
+            }
+
+            if (!temp.SequenceEqual(info))
+            {
+                listBox1.Items.Clear();
+                listBox1.SelectedItems.Clear();
+                info = temp;
+                listBox1.Items.AddRange(temp.ToArray());
             }
         }
 
@@ -248,6 +270,19 @@ namespace GDQSchedule
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void listBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                showAllInfo = !showAllInfo;
+            }
         }
     }
 

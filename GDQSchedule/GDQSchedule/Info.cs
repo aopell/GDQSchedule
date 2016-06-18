@@ -35,7 +35,7 @@ namespace GDQSchedule
             List<string> Comments = new List<string>();
             AllGames.Clear();
 
-            Schedule = File.ReadAllLines(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GDQ\Schedule.txt");
+            Schedule = File.ReadAllLines(Strings.SchedulePath);
 
             foreach (string s in Schedule)
             {

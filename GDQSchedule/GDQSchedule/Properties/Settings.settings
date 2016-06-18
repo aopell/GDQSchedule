@@ -11,5 +11,11 @@
     <Setting Name="Link" Type="System.String" Scope="User">
       <Value Profile="(Default)">&lt;Enter Web Link&gt;</Value>
     </Setting>
+    <Setting Name="ScheduleFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;Enter Schedule File Path&gt;</Value>
+    </Setting>
+    <Setting Name="InfoPanelFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;Enter Info Panel File Path&gt;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

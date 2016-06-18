@@ -58,5 +58,29 @@ namespace GDQSchedule.Properties {
                 this["Link"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<Enter Schedule File Path>")]
+        public string ScheduleFilePath {
+            get {
+                return ((string)(this["ScheduleFilePath"]));
+            }
+            set {
+                this["ScheduleFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<Enter Info Panel File Path>")]
+        public string InfoPanelFilePath {
+            get {
+                return ((string)(this["InfoPanelFilePath"]));
+            }
+            set {
+                this["InfoPanelFilePath"] = value;
+            }
+        }
     }
 }
