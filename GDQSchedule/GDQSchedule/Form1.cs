@@ -178,6 +178,10 @@ namespace GDQSchedule
                 {
                     temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
                 }
+                else
+                {
+                    temp.Add(s);
+                }
             }
 
             if (!temp.SequenceEqual(info))
@@ -263,7 +267,14 @@ namespace GDQSchedule
         {
             if (listBox1.SelectedItem != null)
             {
-                (new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('—')[1].Split('{')[0].Trim(), listBox1.SelectedItem.ToString().Split('{')[1].Split('}')[0].Trim()))).ShowDialog();
+                try
+                {
+                    (new Form4(Info.FindGameByName(listBox1.SelectedItem.ToString().Split('—')[1].Split('{')[0].Trim(), listBox1.SelectedItem.ToString().Split('{')[1].Split('}')[0].Trim()))).ShowDialog();
+                }
+                catch
+                {
+
+                }
             }
         }
 
