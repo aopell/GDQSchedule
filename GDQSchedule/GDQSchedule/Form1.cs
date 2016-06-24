@@ -170,15 +170,22 @@ namespace GDQSchedule
                     game = s;
                 }
                 Game g = Info.FindGameByName(game, category);
-                if (!showAllInfo && g != null && (g == Info.AllGames[Info.FindGameIDByTime(DateTime.Now)] || g.StartTime >= DateTime.Now))
+                try
                 {
-                    temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                    if (!showAllInfo && g != null && (g == Info.AllGames[Info.FindGameIDByTime(DateTime.Now)] || g.StartTime >= DateTime.Now))
+                    {
+                        temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                    }
+                    else if (showAllInfo && g != null)
+                    {
+                        temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
+                    }
+                    else if (g == null)
+                    {
+                        temp.Add(s);
+                    }
                 }
-                else if (showAllInfo && g != null)
-                {
-                    temp.Add(g.StartTime.ToString("ddd dd MMM @ hh:mmtt") + " — " + g.Name + " {" + g.Category + "}");
-                }
-                else if (g == null)
+                catch
                 {
                     temp.Add(s);
                 }

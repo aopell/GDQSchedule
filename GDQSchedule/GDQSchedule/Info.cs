@@ -74,7 +74,11 @@ namespace GDQSchedule
                 }
                 for (int i = 1; i < AllGames.Count; i++)
                 {
-                    if (AllGames[i - 1].StartTime < t && AllGames[i].StartTime > t)
+                    if (AllGames[i].StartTime < t && AllGames[i].StartTime + AllGames[i].EstimatedLength > t)
+                    {
+                        return i;
+                    }
+                    else if (AllGames[i - 1].StartTime < t && AllGames[i].StartTime > t)
                     {
                         return i - 1;
                     }
